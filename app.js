@@ -7,12 +7,18 @@ function adicionarAmigo() {
     let inputFriend = document.getElementById('amigo');
     let friendName = inputFriend.value;
 
+    let nameRegex = /^[a-zA-Z\u00C0-\u017F\s-]+$/;
+
     if (friendName.trim() !== '') {
-        friends_list.push(friendName);
-        updateFriendList();
-        console.log('Amigo adicionado:', friendName);
-        console.log('Lista atual:', friends_list);
-        inputFriend.value = '';
+        if (nameRegex.test(friendName)) {
+            friends_list.push(friendName);
+            updateFriendList();
+            console.log('Amigo adicionado:', friendName);
+            console.log('Lista atual:', friends_list);
+            inputFriend.value = '';
+        } else {
+            alert('Por favor, insira um nome válido. Use apenas letras, espaços e hífens.');
+        }
     } else {
         alert('Por favor, insira um nome válido.');
     }
